@@ -15,7 +15,7 @@ from utils.utils import print_log
 
 from torch.utils.data import DataLoader
 from data.dataloader_nba import NBADataset, seq_collate
-from models.model_led_initializer import WaveTransformer
+from models.model_ddta_initializer import WaveTransformer
 from models.model_diffusion import TransformerDenoisingModel as CoreDenoisingModel
 
 import pdb
@@ -360,7 +360,6 @@ class Trainer:
 		'''
 		Save the visualization data.
 		'''
-		model_path = './results/checkpoints/led_vis.p'
 		model_dict = torch.load(model_path, map_location=torch.device('cpu'))['wavetrans']
 		self.wavetrans.load_state_dict(model_dict)
 		def prepare_seed(rand_seed):
@@ -391,7 +390,6 @@ class Trainer:
 
 	def test_single_model(self):
 		model_pth = './results/checkpoints/base_diffusion_model.p'
-		model_path = './results/led_augment/try1/model_0100_1770.p'
 		model_dict = torch.load(model_path, map_location=torch.device('cpu'))
 		model_dict1 = torch.load(model_pth, map_location=torch.device('cpu'))
 

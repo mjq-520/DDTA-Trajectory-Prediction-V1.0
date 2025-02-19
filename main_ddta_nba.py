@@ -1,5 +1,5 @@
 import argparse
-from trainer import train_led_trajectory_augment_input as led
+from trainer import train_ddta_trajectory_augment_input as ddta
 
 
 def parse_config():
@@ -8,7 +8,7 @@ def parse_config():
 	parser.add_argument("--learning_rate", type=int, default=0.002)
 	parser.add_argument("--max_epochs", type=int, default=128)
 
-	parser.add_argument('--cfg', default='led_augment')
+	parser.add_argument('--cfg', default='ddta_augment')
 	parser.add_argument('--gpu', type=int, default=0, help='Specify which GPU to use.')
 	parser.add_argument('--train', type=int, default=1, help='Whether train or evaluate.')
 	
@@ -18,7 +18,7 @@ def parse_config():
 
 
 def main(config):
-	t = led.Trainer(config)
+	t = ddta.Trainer(config)
 	if config.train==1:
 		t.fit()
 	else:
